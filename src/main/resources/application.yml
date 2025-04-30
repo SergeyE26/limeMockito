@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: limeMockito
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+  liquibase:
+    enabled: false
+    default-schema: public
+    liquibase-schema: public
+    change-log: classpath:/db/changelog/database_changelog.xml
+    drop-first: true
+    test-rollback-on-update: true
+    user: sa
+    password: sa
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: lime
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  kafka:
+    enabled: true
+    fruits:
+      inbox:
+        topic: fruits_inbox_topic
+      outbox:
+        topic: fruits_outbox_topic
+
